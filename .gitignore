@@ -1,1 +1,29 @@
+# RStudio
 .Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# R build artifacts
+*.Rcheck/
+*.tar.gz
+*.zip
+
+# roxygen / devtools
+/doc/
+/Meta/
+
+# testthat snapshots (generados automáticamente)
+tests/testthat/_snaps/
+
+# Archivos temporales de R
+*.Rout
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Secretos / entorno local
+.Renviron

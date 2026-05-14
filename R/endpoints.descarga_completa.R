@@ -1,5 +1,3 @@
-library(httr2)
-
 #' Descargar Datos Geográficos Completos
 #'
 #' Permite descargar listados completos de entidades geográficas en diversos formatos.
@@ -7,8 +5,10 @@ library(httr2)
 #' Si existe GEOREFAR_TOKEN en el Renviron lo usará para hacer la consulta (aunque generalmente no es necesario para estos endpoints públicos).
 #'
 #' @param entidad Cadena de texto. La entidad geográfica a descargar.
-#'        Valores posibles: "provincias", "departamentos", "municipios",
-#'        "localidades", "localidades-censales", "asentamientos", "calles", "cuadras".
+#'        Valores posibles: "provincias", "departamentos", "gobiernos-locales", "municipios",
+#'        "asentamientos", "localidades", "aglomerados", "localidades-censales",
+#'        "fracciones-censales", "radios-censales", "calles", "cuadras",
+#'        "establecimientos-educativos", "instituciones-universitarias".
 #' @param formato Cadena de texto. El formato deseado para el archivo.
 #'        Valores posibles: "csv", "json", "geojson", "ndjson".
 #' @param path_to_save Cadena de texto opcional. Ruta completa (incluyendo nombre de archivo y extensión)
@@ -45,7 +45,7 @@ get_geodata_dump <- function(entidad, formato, path_to_save = NULL) {
   }
 
   filename <- paste0(entidad, ".", formato)
-  url <- paste0(base_url, filename)
+  url <- paste0(DUMP_BASE_URL, filename)
 
   token <- Sys.getenv("GEOREFAR_TOKEN")
 
@@ -73,7 +73,11 @@ get_geodata_dump <- function(entidad, formato, path_to_save = NULL) {
     content_text <- resp_body_string(response, encoding = "UTF-8")
     if (formato == "csv") {
       return(utils::read.csv(text = content_text, stringsAsFactors = FALSE))
-    } else if (formato %in% VALID$FORMATS) {
+    } else if (formato == "ndjson") {
+      lines <- strsplit(trimws(content_text), "\n")[[1]]
+      lines <- lines[nchar(trimws(lines)) > 0]
+      return(lapply(lines, jsonlite::fromJSON))
+    } else if (formato %in% c("json", "geojson")) {
       return(jsonlite::fromJSON(content_text, flatten = TRUE))
     } else {
       warning("Formato no soportado para parseo directo, devolviendo contenido como texto.", call. = FALSE)
