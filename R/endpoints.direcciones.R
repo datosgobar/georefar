@@ -45,7 +45,6 @@ normalizar_direccion <- function(
 }
 
 #' @export
-#' @export
 post_normalizar_direccion <- function(queries_list){
   bulk_post_request(endpoint = "direcciones", queries_list = queries_list)
 }

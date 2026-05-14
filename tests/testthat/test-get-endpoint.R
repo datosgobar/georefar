@@ -92,3 +92,37 @@ test_that("get_endpoint usa token Bearer si GEOREFAR_TOKEN está definido", {
     info = "El header Authorization no fue incluido en el request"
   )
 })
+
+test_that("get_endpoint NO agrega Authorization si GEOREFAR_TOKEN está vacío", {
+  stub(get_endpoint, "check_internet", invisible)
+
+  captured_req <- NULL
+  stub(get_endpoint, "httr2::req_perform", function(req) {
+    captured_req <<- req
+    structure(list(), class = "httr2_response")
+  })
+  stub(get_endpoint, "httr2::resp_body_json", mock(list(provincias = list())))
+
+  withr::with_envvar(c(GEOREFAR_TOKEN = ""), {
+    suppressWarnings(get_endpoint("provincias", list(max = 1)))
+  })
+
+  expect_false(
+    "Authorization" %in% names(captured_req$headers),
+    info = "El header Authorization no debería estar presente sin token"
+  )
+})
+
+test_that("prepare_post_batch_request incluye Authorization si GEOREFAR_TOKEN está definido", {
+  withr::with_envvar(c(GEOREFAR_TOKEN = "mi-token-post"), {
+    req <- prepare_post_batch_request("provincias", list(list(nombre = "test")))
+  })
+  expect_true("Authorization" %in% names(req$headers))
+})
+
+test_that("prepare_post_batch_request NO incluye Authorization si GEOREFAR_TOKEN está vacío", {
+  withr::with_envvar(c(GEOREFAR_TOKEN = ""), {
+    req <- prepare_post_batch_request("provincias", list(list(nombre = "test")))
+  })
+  expect_false("Authorization" %in% names(req$headers))
+})
