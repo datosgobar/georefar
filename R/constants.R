@@ -5,7 +5,10 @@ LIMIT_MAX <- 5000
 LIMIT_MAX_INICIO <- 10000
 
 # Base URL de la API de georef-ar
-base_url <- "https://apis.datos.gob.ar/georef/api/"
+base_url <- "https://apis.datos.gob.ar/georef/api/v2.0/"
+
+# URL base para descargas completas (sin versión, endpoint diferente al de la API)
+DUMP_BASE_URL <- "https://apis.datos.gob.ar/georef/api/"
 
 #' Mensajes de error
 ERR_MSGS <- list(
@@ -51,22 +54,22 @@ VALID <- list(
 
     provincias                    = c(UT_BASE_VALID_PARAMS, 'interseccion'),
     departamentos                 = c(UT_BASE_VALID_PARAMS, 'provincia','interseccion'),
-    municipios                    = c(UT_BASE_VALID_PARAMS, 'provincia','interseccion'),
-    gobiernos_locales             = c(UT_BASE_VALID_PARAMS, 'provincia','interseccion','categoria'),
-    
-    asentamientos                 = c(UT_BASE_VALID_PARAMS, 'provincia','departamento','municipio','localidad_censal','categoria'),
-    localidades                   = c(UT_BASE_VALID_PARAMS, 'provincia','departamento','municipio','localidad_censal'),
+    municipios                    = c(UT_BASE_VALID_PARAMS, 'provincia','departamento','interseccion'),
+    "gobiernos-locales"           = c(UT_BASE_VALID_PARAMS, 'provincia','departamento','interseccion','categoria'),
+
+    asentamientos                 = c(UT_BASE_VALID_PARAMS, 'provincia','departamento','gobierno_local','localidad_censal','categoria'),
+    localidades                   = c(UT_BASE_VALID_PARAMS, 'provincia','departamento','gobierno_local','localidad_censal'),
     calles                        = c(UT_BASE_VALID_PARAMS, 'provincia','departamento','localidad_censal','categoria'),
 
-    "localidades-censales"          = c(UT_BASE_VALID_PARAMS, 'provincia','departamento','municipio'),
+    "localidades-censales"          = c(UT_BASE_VALID_PARAMS, 'provincia','departamento','gobierno_local'),
     "fracciones-censales"           = c(BASE_VALID_PARAMS   , 'id','provincia','departamento'),
     "radios-censales"               = c(BASE_VALID_PARAMS   , 'id','provincia','departamento','fraccion_censal'),
     
     direcciones                   = c(BASE_VALID_PARAMS   , 'provincia','departamento','localidad_censal','direccion','localidad','desplazar'),
-    ubicacion                     = c('campos','aplanar','formato','lat','lon','division'),
+    ubicacion                     = c('campos','aplanar','lat','lon','division'),
 
     "establecimientos-educativos"   = c(UT_BASE_VALID_PARAMS, 'provincia','departamento','gestion'),
-    "instituciones-universitarias"  = c(UT_BASE_VALID_PARAMS, 'provincia','departamento','gestion','universidad')
+    "instituciones-universitarias"  = c(UT_BASE_VALID_PARAMS, 'provincia','departamento','gestion')
   ),
   ENTITIES = 
     c(
@@ -88,3 +91,22 @@ VALID <- list(
     ),
   FORMATS = c("csv", "json", "geojson", "ndjson") # TODO: verificar
 )
+
+valid_entidades <- c(
+  "provincias",
+  "departamentos",
+  "gobiernos-locales",
+  "municipios",
+  "asentamientos",
+  "localidades",
+  "aglomerados",
+  "localidades-censales",
+  "fracciones-censales",
+  "radios-censales",
+  "calles",
+  "cuadras",
+  "establecimientos-educativos",
+  "instituciones-universitarias"
+)
+
+valid_formatos <- c("csv", "json", "geojson", "ndjson")

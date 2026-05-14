@@ -14,6 +14,7 @@
 #' @param max integer Cantidad máxima de resultados a devolver. La API limita a un máximo de 10 para este endpoint.
 #' @param inicio integer Cantidad de resultados a omitir desde el principio.
 #' @param exacto boolean Cuando está presente, se activa el modo de búsqueda por texto exacto. Sólo tiene efecto cuando se usan campos de búsqueda por texto (por ejemplo, nombre).
+#' @param desplazar boolean Si está activo, al georreferenciar ubica el punto sobre la manzana en lugar de ubicarlos sobre el eje de calle
 #'
 #' @export
 #' @rdname normalizar_direccion
@@ -43,6 +44,8 @@ normalizar_direccion <- function(
   get_endpoint(endpoint = "direcciones", args = as.list(environment()))
 }
 
+#' @export
+#' @export
 post_normalizar_direccion <- function(queries_list){
   bulk_post_request(endpoint = "direcciones", queries_list = queries_list)
 }

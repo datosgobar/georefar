@@ -1,18 +1,19 @@
 get_endpoint <- function(endpoint, args) {
-  
+
   token <- Sys.getenv("GEOREFAR_TOKEN")
   check_internet()
 
   # Validación de parámetros
-  args_clean <- purrr::discard(args, is.null)
+  args_clean <- Filter(Negate(is.null), args)
   valid_params <- VALID$PARAMS[[endpoint]]
   errores <- c()
 
   ## Agregar NAs a vector de errores si existen
-  if (!assertthat::noNA(args_clean)) {
-    na_params <- names(args_clean[is.na(args_clean)])
+  has_na <- any(vapply(args_clean, function(x) any(is.na(x)), logical(1)))
+  if (has_na) {
+    na_params <- names(args_clean)[vapply(args_clean, function(x) any(is.na(x)), logical(1))]
     errores <- c(
-      errores, 
+      errores,
       sprintf(
         ERR_MSGS$get_endpoint$NA_PARAMS,
         paste(na_params, collapse = ", ")
@@ -25,10 +26,10 @@ get_endpoint <- function(endpoint, args) {
   valores_invalidos <- setdiff(param_names, valid_params)
   if (length(valores_invalidos) > 0) {
     errores <- c(
-      errores, 
+      errores,
       sprintf(
-        ERR_MSGS$get_endpoint$INVALID_PARAMS, 
-        endpoint, 
+        ERR_MSGS$get_endpoint$INVALID_PARAMS,
+        endpoint,
         paste(valores_invalidos, collapse = ", ")
       )
     )
@@ -36,7 +37,7 @@ get_endpoint <- function(endpoint, args) {
 
   ## Lanzar error si hay problemas
   if (length(errores) > 0) {
-    stop(err_msg(), "\n ", paste(errores, collapse = "\n "), call. = FALSE)
+    stop("Error en la consulta:\n ", paste(errores, collapse = "\n "), call. = FALSE)
   }
 
   req <- httr2::request(paste0(base_url, endpoint)) |>
@@ -58,8 +59,7 @@ get_endpoint <- function(endpoint, args) {
     data_list <- list()
   }
 
-  data <- data_list |>
-    purrr::modify_if(is.null, list)
+  data <- purrr::modify_if(data_list, is.null, list)
 
   if (length(data) == 0) {
     warning(ERR_MSGS$get_endpoint$EMPTY_RESPOSE, call. = FALSE)
