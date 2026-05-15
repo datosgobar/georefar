@@ -4,22 +4,24 @@
 \alias{get_ubicacion}
 \title{Obtener Ubicacion}
 \usage{
-get_ubicacion(lat, lon, aplanar = TRUE, campos = NULL, formato = NULL)
+get_ubicacion(lat, lon, division = NULL, aplanar = TRUE, campos = NULL)
 }
 \arguments{
 \item{lat}{numeric Latitud del punto, en forma de número real con grados decimales.}
 
 \item{lon}{numeric Longitud del punto, en forma de número real con grados decimales.}
 
+\item{division}{text Tipo de división territorial que define las unidades territoriales que se devolverán. Valores disponibles : politica, geoestadistica}
+
 \item{aplanar}{boolean Cuando está presente, muestra el resultado JSON con una estructura plana.}
 
-\item{campos}{text Campos a incluir en la respuesta separados por comas, sin espacios. Algunos campos siempre serán incluidos, incluso si no se agregaron en la lista. Para incluir campos de sub-entidades, separar los nombres con un punto, por ejemplo: provincia.id.}
+\item{campos}{text Campos a incluir en la respuesta separados por comas, sin espacios. Algunos campos siempre serán incluidos, incluso si no se agregaron en la lista. Para incluir campos de sub-entidades, separar los nombres con un punto, por ejemplo: provincia.id. También se pueden especificar los valores especiales basico, estandar y completo.}
 }
 \value{
 Un Data Frame con las unidades territoriales que contienen el punto.
 }
 \description{
-Permite realizar una georreferenciación inversa para un punto, informando cuales unidades territoriales lo contienen.
+Permite realizar una georreferenciación inversa para un punto, informando cuales unidades territoriales lo contienen, además de la calle y altura más cercana.
 Realiza la consulta GET al endpoint /ubicacion de georef-ar-api.
 Si existe GEOREFAR_TOKEN en el Renviron lo usará para hacer la consulta.
 }

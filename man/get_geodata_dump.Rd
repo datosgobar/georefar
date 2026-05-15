@@ -8,8 +8,10 @@ get_geodata_dump(entidad, formato, path_to_save = NULL)
 }
 \arguments{
 \item{entidad}{Cadena de texto. La entidad geográfica a descargar.
-Valores posibles: "provincias", "departamentos", "municipios",
-"localidades", "localidades-censales", "asentamientos", "calles", "cuadras".}
+Valores posibles: "provincias", "departamentos", "gobiernos-locales", "municipios",
+"asentamientos", "localidades", "aglomerados", "localidades-censales",
+"fracciones-censales", "radios-censales", "calles", "cuadras",
+"establecimientos-educativos", "instituciones-universitarias".}
 
 \item{formato}{Cadena de texto. El formato deseado para el archivo.
 Valores posibles: "csv", "json", "geojson", "ndjson".}

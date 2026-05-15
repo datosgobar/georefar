@@ -29,7 +29,7 @@ get_provincias(
 
 \item{campos}{text Campos a incluir en la respuesta separados por comas, sin espacios. Algunos campos siempre serán incluidos, incluso si no se agregaron en la lista. Para incluir campos de sub-entidades, separar los nombres con un punto, por ejemplo: provincia.id.}
 
-\item{max}{integer Cantidad máxima de resultados a devolver. La API limita a un máximo de 24 para este endpoint.}
+\item{max}{integer Cantidad máxima de resultados a devolver. Si no se especifica, la API muestra el máximo de 24 para este endpoint.}
 
 \item{inicio}{integer Cantidad de resultados a omitir desde el principio.}
 

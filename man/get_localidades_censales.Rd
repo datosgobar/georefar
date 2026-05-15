@@ -9,8 +9,7 @@ get_localidades_censales(
   nombre = NULL,
   provincia = NULL,
   departamento = NULL,
-  municipio = NULL,
-  interseccion = NULL,
+  gobierno_local = NULL,
   orden = NULL,
   aplanar = TRUE,
   campos = NULL,
@@ -20,7 +19,7 @@ get_localidades_censales(
 )
 }
 \arguments{
-\item{id}{text Filtrar por ID.}
+\item{id}{text Filtrar por ID. Se pueden especificar varios IDs separados por comas.}
 
 \item{nombre}{text Filtrar por Nombre.}
 
@@ -28,17 +27,15 @@ get_localidades_censales(
 
 \item{departamento}{text Filtrar por nombre o ID de Departamento.}
 
-\item{municipio}{text Filtrar por nombre o ID de Municipio.}
-
-\item{interseccion}{text Geometría GeoJSON utilizada para filtrar resultados por intersección espacial. Sólo se soportan polígonos y multipolígonos. Ejemplo: polygon((-58.431,-34.592),(-58.430,-34.590),(-58.428,-34.593),(-58.431,-34.592)).}
+\item{gobierno_local}{text Filtrar por nombre o ID de Gobierno Local.}
 
 \item{orden}{text Campo por el cual ordenar los resultados (por ID o nombre)}
 
 \item{aplanar}{boolean Cuando está presente, muestra el resultado JSON con una estructura plana.}
 
-\item{campos}{text Campos a incluir en la respuesta separados por comas, sin espacios. Algunos campos siempre serán incluidos, incluso si no se agregaron en la lista. Para incluir campos de sub-entidades, separar los nombres con un punto, por ejemplo: provincia.id.}
+\item{campos}{text Campos a incluir en la respuesta separados por comas, sin espacios. Algunos campos siempre serán incluidos, incluso si no se agregaron en la lista. Para incluir campos de sub-entidades, separar los nombres con un punto, por ejemplo: provincia.id. También se pueden especificar los valores especiales basico, estandar y completo.}
 
-\item{max}{integer Cantidad máxima de resultados a devolver. La API limita a un máximo de 5000 para este endpoint.}
+\item{max}{integer Cantidad máxima de resultados a devolver. Si no se especifica, la API muestra 10 resultados por defecto.}
 
 \item{inicio}{integer Cantidad de resultados a omitir desde el principio.}
 
