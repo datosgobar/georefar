@@ -10,7 +10,7 @@
 #' @param orden text Campo por el cual ordenar los resultados.  (Por ID o nombre)
 #' @param aplanar boolean Cuando está presente, muestra el resultado JSON con una estructura plana.
 #' @param campos text Campos a incluir en la respuesta separados por comas, sin espacios. Algunos campos siempre serán incluidos, incluso si no se agregaron en la lista. Para incluir campos de sub-entidades, separar los nombres con un punto, por ejemplo: provincia.id.
-#' @param max integer Cantidad máxima de resultados a devolver. La API limita a un máximo de 529 para este endpoint.
+#' @param max integer Cantidad máxima de resultados a devolver. Si no se especifica, la API muestra 10 resultados por defecto.
 #' @param inicio integer Cantidad de resultados a omitir desde el principio.
 #' @param exacto boolean Cuando está presente, se activa el modo de búsqueda por texto exacto. Sólo tiene efecto cuando se usan campos de búsqueda por texto (por ejemplo, nombre).
 #'

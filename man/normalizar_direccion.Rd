@@ -41,6 +41,8 @@ normalizar_direccion(
 \item{inicio}{integer Cantidad de resultados a omitir desde el principio.}
 
 \item{exacto}{boolean Cuando está presente, se activa el modo de búsqueda por texto exacto. Sólo tiene efecto cuando se usan campos de búsqueda por texto (por ejemplo, nombre).}
+
+\item{desplazar}{boolean Si está activo, al georreferenciar ubica el punto sobre la manzana en lugar de ubicarlos sobre el eje de calle}
 }
 \value{
 Un Data Frame con el listado normalizado de de direcciones
