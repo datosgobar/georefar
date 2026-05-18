@@ -2,7 +2,8 @@
 #'
 #' Permite realizar búsquedas sobre el listado de aglomerados.
 #' Realiza la consulta GET al endpoint /aglomerados de georef-ar-api.
-#' Si existe GEOREFAR_TOKEN en el Renviron lo usará para hacer la consulta.
+#' Para aumentar la cuota de uso, se puede configurar un token JWT en la variable
+#' de entorno \code{GEOREFAR_TOKEN} (ver \url{https://datosgobar.github.io/georef-ar-api/jwt-token/}).
 #' @param id text Filtrar por ID. Se pueden especificar varios IDs separados por comas.
 #' @param nombre text Filtrar por Nombre.
 #' @param orden text Campo por el cual ordenar los resultados (por ID o nombre)
@@ -34,8 +35,12 @@ get_aglomerados <- function(
     get_endpoint(endpoint = "aglomerados", args = as.list(environment()))
 }
 
-#' Obtener aglomerados en batch
-#' @return devuelve un tibble con los resultados para cada query o
+#' Consultar aglomerados en lote (POST)
+#'
+#' Realiza múltiples consultas al endpoint /aglomerados en una sola llamada usando POST.
+#' @param queries_list Lista de listas, donde cada elemento es una consulta con los mismos
+#'   parámetros aceptados por \code{get_aglomerados}.
+#' @return Un tibble con los resultados combinados de todas las consultas.
 #' @export
 post_aglomerados <- function(queries_list){
   bulk_post_request(endpoint = "aglomerados", queries_list = queries_list)

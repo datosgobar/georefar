@@ -1,8 +1,6 @@
 bulk_post_request <- function(endpoint, queries_list, check_max = FALSE) {
-  # Check de que es una lista de listas
   check_list_of_lists(queries_list)
 
-  # Check parametros en cada consulta
   for (query in queries_list) {
     check_params(endpoint, query)
     if (check_max == TRUE) {
@@ -10,10 +8,8 @@ bulk_post_request <- function(endpoint, queries_list, check_max = FALSE) {
     }
   }
 
-  # Crear lotes
   query_batches <- create_query_batches(queries_list, param_name_for_sum = "max")
 
-  # Check se crearon lotes
   if (length(query_batches) == 0) {
     if (length(queries_list) > 0) {
       warning(
@@ -27,10 +23,8 @@ bulk_post_request <- function(endpoint, queries_list, check_max = FALSE) {
     return(dplyr::tibble())
   }
 
-  # Check acceso a internet
   check_internet()
 
-  # Preparar y enviar requests en paralelo
   all_batch_requests <- list()
   for (batch_idx in seq_along(query_batches)) {
     current_batch <- query_batches[[batch_idx]]
@@ -39,7 +33,6 @@ bulk_post_request <- function(endpoint, queries_list, check_max = FALSE) {
   }
   responses <- httr2::req_perform_parallel(all_batch_requests, on_error = "return")
 
-  # Check errores y procesar respuestas
   processed_results <- list()
   has_errors <- FALSE
   for (i in seq_along(responses)) {
@@ -63,7 +56,6 @@ bulk_post_request <- function(endpoint, queries_list, check_max = FALSE) {
     }
   }
 
-  # Combinar resultados
   combined_results <- dplyr::bind_rows(processed_results)
   if (nrow(combined_results) == 0 && length(queries_list) > 0) {
     err_text <- sprintf(

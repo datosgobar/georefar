@@ -2,7 +2,8 @@
 #'
 #' Permite normalizar una dirección utilizando el listado de vías de circulación.
 #' Realiza la consulta GET al endpoint /direcciones de georef-ar-api.
-#' Si existe GEOREFAR_TOKEN en el Renviron lo usará para hacer la consulta.
+#' Para aumentar la cuota de uso, se puede configurar un token JWT en la variable
+#' de entorno \code{GEOREFAR_TOKEN} (ver \url{https://datosgobar.github.io/georef-ar-api/jwt-token/}).
 #' @param direccion text Requerido. Direccion a normalizar, debe contener altura separada por espacio. (Ej: Colon 127)
 #' @param provincia text Filtrar por nombre o ID de provincia.
 #' @param departamento text Filtrar por nombre o ID de departamento.

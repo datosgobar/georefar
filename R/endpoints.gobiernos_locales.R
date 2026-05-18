@@ -2,7 +2,8 @@
 #'
 #' Permite realizar búsquedas sobre el listado de gobiernos locales.
 #' Realiza la consulta GET al endpoint /gobiernos-locales de georef-ar-api.
-#' Si existe GEOREFAR_TOKEN en el Renviron lo usará para hacer la consulta.
+#' Para aumentar la cuota de uso, se puede configurar un token JWT en la variable
+#' de entorno \code{GEOREFAR_TOKEN} (ver \url{https://datosgobar.github.io/georef-ar-api/jwt-token/}).
 #' @param id text Filtrar por ID. Se pueden especificar varios IDs separados por comas.
 #' @param nombre text Filtrar por Nombre.
 #' @param provincia text Filtrar por nombre o ID de Provincia.
