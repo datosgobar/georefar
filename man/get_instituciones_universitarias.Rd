@@ -47,7 +47,8 @@ Un Data Frame con el listado de Instituciones Universitarias
 \description{
 Permite realizar búsquedas sobre el listado de instituciones universitarias.
 Realiza la consulta GET al endpoint /instituciones-universitarias de georef-ar-api.
-Si existe GEOREFAR_TOKEN en el Renviron lo usará para hacer la consulta.
+Para aumentar la cuota de uso, se puede configurar un token JWT en la variable
+de entorno \code{GEOREFAR_TOKEN} (ver \url{https://datosgobar.github.io/georef-ar-api/jwt-token/}).
 }
 \examples{
 \dontrun{

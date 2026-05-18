@@ -2,7 +2,8 @@
 #'
 #' Permite descargar listados completos de entidades geográficas en diversos formatos.
 #' Accede al endpoint /{filename} de la georef-ar-api.
-#' Si existe GEOREFAR_TOKEN en el Renviron lo usará para hacer la consulta (aunque generalmente no es necesario para estos endpoints públicos).
+#' Para aumentar la cuota de uso, se puede configurar un token JWT en la variable
+#' de entorno \code{GEOREFAR_TOKEN} (ver \url{https://datosgobar.github.io/georef-ar-api/jwt-token/}).
 #'
 #' @param entidad Cadena de texto. La entidad geográfica a descargar.
 #'        Valores posibles: "provincias", "departamentos", "gobiernos-locales", "municipios",

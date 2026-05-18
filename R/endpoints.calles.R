@@ -2,7 +2,8 @@
 #'
 #' Permite realizar búsquedas sobre el listado de calles.
 #' Realiza la consulta GET al endpoint /calles de georef-ar-api.
-#' Si existe GEOREFAR_TOKEN en el Renviron lo usará para hacer la consulta.
+#' Para aumentar la cuota de uso, se puede configurar un token JWT en la variable
+#' de entorno \code{GEOREFAR_TOKEN} (ver \url{https://datosgobar.github.io/georef-ar-api/jwt-token/}).
 #' @param id text Filtrar por ID.
 #' @param nombre text Filtrar por Nombre. Se pueden especificar varios IDs separados por comas.
 #' @param provincia text Filtrar por nombre o ID de Provincia.
@@ -19,6 +20,7 @@
 #' @export
 #' @rdname get_calles
 #'
+#' @references [georef-ar-api/calles](https://datosgobar.github.io/georef-ar-api/open-api/#/Recursos/get_calles)
 #' @return Un Data Frame con el listado de calles.
 #' @examples
 #' \dontrun{

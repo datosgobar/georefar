@@ -23,11 +23,12 @@ Un Data Frame con las unidades territoriales que contienen el punto.
 \description{
 Permite realizar una georreferenciación inversa para un punto, informando cuales unidades territoriales lo contienen, además de la calle y altura más cercana.
 Realiza la consulta GET al endpoint /ubicacion de georef-ar-api.
-Si existe GEOREFAR_TOKEN en el Renviron lo usará para hacer la consulta.
+Para aumentar la cuota de uso, se puede configurar un token JWT en la variable
+de entorno \code{GEOREFAR_TOKEN} (ver \url{https://datosgobar.github.io/georef-ar-api/jwt-token/}).
 }
 \examples{
 \dontrun{
-get_ubicacion()
+get_ubicacion(lat = -34.6037, lon = -58.3816)
 }
 }
 \references{

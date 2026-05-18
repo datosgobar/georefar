@@ -2,7 +2,8 @@
 #'
 #' Permite realizar una georreferenciación inversa para un punto, informando cuales unidades territoriales lo contienen, además de la calle y altura más cercana.
 #' Realiza la consulta GET al endpoint /ubicacion de georef-ar-api.
-#' Si existe GEOREFAR_TOKEN en el Renviron lo usará para hacer la consulta.
+#' Para aumentar la cuota de uso, se puede configurar un token JWT en la variable
+#' de entorno \code{GEOREFAR_TOKEN} (ver \url{https://datosgobar.github.io/georef-ar-api/jwt-token/}).
 #' @param lat numeric Latitud del punto, en forma de número real con grados decimales.
 #' @param lon numeric Longitud del punto, en forma de número real con grados decimales.
 #' @param division text Tipo de división territorial que define las unidades territoriales que se devolverán. Valores disponibles : politica, geoestadistica
@@ -16,7 +17,7 @@
 #' @return Un Data Frame con las unidades territoriales que contienen el punto.
 #' @examples
 #' \dontrun{
-#' get_ubicacion()
+#' get_ubicacion(lat = -34.6037, lon = -58.3816)
 #' }
 get_ubicacion <- function(lat, lon, division = NULL, aplanar = TRUE, campos = NULL){
   get_endpoint(endpoint = "ubicacion", args = as.list(environment()))

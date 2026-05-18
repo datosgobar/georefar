@@ -2,13 +2,17 @@
 % Please edit documentation in R/endpoints.aglomerados.R
 \name{post_aglomerados}
 \alias{post_aglomerados}
-\title{Obtener aglomerados en batch}
+\title{Consultar aglomerados en lote (POST)}
 \usage{
 post_aglomerados(queries_list)
 }
+\arguments{
+\item{queries_list}{Lista de listas, donde cada elemento es una consulta con los mismos
+parámetros aceptados por \code{get_aglomerados}.}
+}
 \value{
-devuelve un tibble con los resultados para cada query o
+Un tibble con los resultados combinados de todas las consultas.
 }
 \description{
-Obtener aglomerados en batch
+Realiza múltiples consultas al endpoint /aglomerados en una sola llamada usando POST.
 }

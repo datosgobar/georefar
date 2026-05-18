@@ -89,7 +89,7 @@ VALID <- list(
       'establecimientos_educativos',
       'instituciones_universitarias'
     ),
-  FORMATS = c("csv", "json", "geojson", "ndjson") # TODO: verificar
+  FORMATS = c("csv", "json", "geojson", "ndjson")
 )
 
 valid_entidades <- c(
