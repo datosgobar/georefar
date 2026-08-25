@@ -22,8 +22,11 @@
 #' @references [georef-ar-api/localidades-censales](https://datosgobar.github.io/georef-ar-api/open-api/#/Recursos/get_localidades_censales)
 #' @return Un Data Frame con el listado de Localidades Censales.
 #' @examples
-#' \dontrun{
-#' get_localidades_censales(nombre = "VILLA GENERAL BELGRANO")
+#' \donttest{
+#' # Requiere conexion a internet. Se usa try() para que una caida o un
+#' # rate limit del servicio no haga fallar R CMD check (politica de CRAN
+#' # sobre paquetes que dependen de recursos de internet).
+#' try(get_localidades_censales(nombre = "VILLA GENERAL BELGRANO"))
 #' }
 get_localidades_censales <- function(
     id = NULL,

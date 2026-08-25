@@ -1,3 +1,6 @@
+# Requiere paquetes de Suggests; si faltan, se saltea el archivo completo.
+testthat::skip_if_not_installed("mockery")
+
 skip_if_not_installed("mockery")
 
 test_that("replace_null_with_na reemplaza NULL por NA en lista plana", {
@@ -42,6 +45,11 @@ test_that("httr2_error_handler genera mensaje con status y URL", {
   mockery::stub(httr2_error_handler, "httr2::resp_status_desc", function(r) "Not Found")
   mockery::stub(httr2_error_handler, "httr2::resp_url",         function(r) "https://apis.datos.gob.ar/georef/api/v2.0/provincias")
   mockery::stub(httr2_error_handler, "httr2::resp_has_body",    function(r) FALSE)
-  expect_error(httr2_error_handler(fake_resp), "404")
-  expect_error(httr2_error_handler(fake_resp), "Not Found")
+  # httr2::req_error(body=) espera un vector de caracteres de retorno,
+  # no un error lanzado.
+  msg <- httr2_error_handler(fake_resp)
+  expect_type(msg, "character")
+  expect_match(paste(msg, collapse = " "), "404")
+  expect_match(paste(msg, collapse = " "), "Not Found")
+  expect_match(paste(msg, collapse = " "), "provincias")
 })

@@ -11,6 +11,8 @@ base_url <- "https://apis.datos.gob.ar/georef/api/v2.0/"
 DUMP_BASE_URL <- "https://apis.datos.gob.ar/georef/api/"
 
 #' Mensajes de error
+#'
+#' @noRd
 ERR_MSGS <- list(
   
   # Mensajes de error para get_endpoint

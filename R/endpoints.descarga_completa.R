@@ -27,12 +27,19 @@
 #'
 #' @references [georef-ar-api/descargas](https://datosgobar.github.io/georef-ar-api/open-api/#/Recursos/get__filename_)
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' # Requiere conexion a internet. Se usa try() para que una caida o un
+#' # rate limit del servicio no haga fallar R CMD check (politica de CRAN
+#' # sobre paquetes que dependen de recursos de internet).
 #'   # Obtener provincias en formato GeoJSON como objeto R
-#'   provincias_geojson <- get_geodata_dump(entidad = "provincias", formato = "geojson")
+#'   provincias_geojson <- try(get_geodata_dump(entidad = "provincias", formato = "geojson"))
 #'
-#'   # Guardar departamentos en formato CSV
-#'   get_geodata_dump(entidad = "departamentos", formato = "csv", path_to_save = "deptos.csv")
+#'   # Guardar departamentos en formato CSV.
+#'   # Se usa tempfile(): los ejemplos nunca deben escribir en el directorio
+#'   # de trabajo ni en el espacio de archivos del usuario.
+#'   destino <- tempfile(fileext = ".csv")
+#'   try(get_geodata_dump(entidad = "departamentos", formato = "csv", path_to_save = destino))
+#'   unlink(destino)
 #' }
 get_geodata_dump <- function(entidad, formato, path_to_save = NULL) {
 

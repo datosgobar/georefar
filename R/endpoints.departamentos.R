@@ -21,8 +21,11 @@
 #' @references [georef-ar-api/departamentos](https://datosgobar.github.io/georef-ar-api/open-api/#/Recursos/get_departamentos)
 #' @return Un Data Frame con el listado de Departamentos
 #' @examples
-#' \dontrun{
-#' get_departamentos(provincia = "06", max = 5)
+#' \donttest{
+#' # Requiere conexion a internet. Se usa try() para que una caida o un
+#' # rate limit del servicio no haga fallar R CMD check (politica de CRAN
+#' # sobre paquetes que dependen de recursos de internet).
+#' try(get_departamentos(provincia = "06", max = 5))
 #' }
 get_departamentos <- function(
     id = NULL, 

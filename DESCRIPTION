@@ -12,6 +12,8 @@ Description: Query the Argentine national geographic normalization service
     performing reverse geocoding. Results are returned as data frames, and
     batch queries can be sent in a single request.
 License: GPL-3
+URL: https://github.com/datosgobar/georefar
+BugReports: https://github.com/datosgobar/georefar/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 Depends: 
@@ -24,7 +26,6 @@ Imports:
     jsonlite,
     purrr
 Suggests:
-    attempt,
     mockery,
     testthat (>= 3.0.0),
     withr

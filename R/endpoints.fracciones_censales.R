@@ -20,8 +20,11 @@
 #' @references [georef-ar-api/fracciones-censales](https://datosgobar.github.io/georef-ar-api/open-api/#/Recursos/get_fracciones_censales)
 #' @return Un Data Frame con el listado de Fracciones Censales.
 #' @examples
-#' \dontrun{
-#' get_fracciones_censales(id = "8208428")
+#' \donttest{
+#' # Requiere conexion a internet. Se usa try() para que una caida o un
+#' # rate limit del servicio no haga fallar R CMD check (politica de CRAN
+#' # sobre paquetes que dependen de recursos de internet).
+#' try(get_fracciones_censales(id = "8208428"))
 #' }
 get_fracciones_censales <- function(
     id = NULL,

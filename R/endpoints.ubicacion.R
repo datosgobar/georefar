@@ -16,8 +16,11 @@
 #' @references [georef-ar-api/ubicacion](https://datosgobar.github.io/georef-ar-api/open-api/#/Recursos/get_ubicacion)
 #' @return Un Data Frame con las unidades territoriales que contienen el punto.
 #' @examples
-#' \dontrun{
-#' get_ubicacion(lat = -34.6037, lon = -58.3816)
+#' \donttest{
+#' # Requiere conexion a internet. Se usa try() para que una caida o un
+#' # rate limit del servicio no haga fallar R CMD check (politica de CRAN
+#' # sobre paquetes que dependen de recursos de internet).
+#' try(get_ubicacion(lat = -34.6037, lon = -58.3816))
 #' }
 get_ubicacion <- function(lat, lon, division = NULL, aplanar = TRUE, campos = NULL){
   get_endpoint(endpoint = "ubicacion", args = as.list(environment()))

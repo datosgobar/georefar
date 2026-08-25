@@ -22,8 +22,11 @@
 #' @references [georef-ar-api/instituciones-universitarias](https://datosgobar.github.io/georef-ar-api/open-api/#/Recursos/get_instituciones-universitarias)
 #' @return Un Data Frame con el listado de Instituciones Universitarias
 #' @examples
-#' \dontrun{
-#' get_instituciones_universitarias(provincia = "cordoba", max = 10)
+#' \donttest{
+#' # Requiere conexion a internet. Se usa try() para que una caida o un
+#' # rate limit del servicio no haga fallar R CMD check (politica de CRAN
+#' # sobre paquetes que dependen de recursos de internet).
+#' try(get_instituciones_universitarias(provincia = "cordoba", max = 10))
 #' }
 get_instituciones_universitarias <- function(
     id = NULL,

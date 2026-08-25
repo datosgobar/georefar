@@ -51,8 +51,11 @@ Para aumentar la cuota de uso, se puede configurar un token JWT en la variable
 de entorno \code{GEOREFAR_TOKEN} (ver \url{https://datosgobar.github.io/georef-ar-api/jwt-token/}).
 }
 \examples{
-\dontrun{
-get_instituciones_universitarias(provincia = "cordoba", max = 10)
+\donttest{
+# Requiere conexion a internet. Se usa try() para que una caida o un
+# rate limit del servicio no haga fallar R CMD check (politica de CRAN
+# sobre paquetes que dependen de recursos de internet).
+try(get_instituciones_universitarias(provincia = "cordoba", max = 10))
 }
 }
 \references{

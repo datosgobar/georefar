@@ -23,9 +23,12 @@
 #' @references [georef-ar-api/direcciones](https://datosgobar.github.io/georef-ar-api/open-api/#/Recursos/get_direcciones)
 #' @return Un Data Frame con el listado normalizado de de direcciones
 #' @examples
-#' \dontrun{
-#' normalizar_direccion(direccion = "Corrientes 1200, Rosario")
-#' normalizar_direccion(direccion = "SAN MARTIN 100", provincia = "02", max = 5)
+#' \donttest{
+#' # Requiere conexion a internet. Se usa try() para que una caida o un
+#' # rate limit del servicio no haga fallar R CMD check (politica de CRAN
+#' # sobre paquetes que dependen de recursos de internet).
+#' try(normalizar_direccion(direccion = "Corrientes 1200, Rosario"))
+#' try(normalizar_direccion(direccion = "SAN MARTIN 100", provincia = "02", max = 5))
 #' }
 
 normalizar_direccion <- function(

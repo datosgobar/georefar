@@ -22,8 +22,11 @@
 #' @references [georef-ar-api/municipios](https://datosgobar.github.io/georef-ar-api/open-api/#/Recursos/get_municipios)
 #' @return Un Data Frame con el listado de Municipios
 #' @examples
-#' \dontrun{
-#' get_municipios(provincia = "cordoba", max = 10)
+#' \donttest{
+#' # Requiere conexion a internet. Se usa try() para que una caida o un
+#' # rate limit del servicio no haga fallar R CMD check (politica de CRAN
+#' # sobre paquetes que dependen de recursos de internet).
+#' try(get_municipios(provincia = "cordoba", max = 10))
 #' }
 get_municipios <- function(
     id = NULL, 

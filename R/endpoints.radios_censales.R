@@ -21,8 +21,11 @@
 #' @references [georef-ar-api/radios-censales](https://datosgobar.github.io/georef-ar-api/open-api/#/Recursos/get_radios_censales)
 #' @return Un Data Frame con el listado de Radios Censales.
 #' @examples
-#' \dontrun{
-#' get_radios_censales(id = "820842811", fraccion_censal = "8208428")
+#' \donttest{
+#' # Requiere conexion a internet. Se usa try() para que una caida o un
+#' # rate limit del servicio no haga fallar R CMD check (politica de CRAN
+#' # sobre paquetes que dependen de recursos de internet).
+#' try(get_radios_censales(id = "820842811", fraccion_censal = "8208428"))
 #' }
 get_radios_censales <- function(
     id = NULL,

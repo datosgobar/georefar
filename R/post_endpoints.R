@@ -25,17 +25,20 @@
 #' @references [georef-ar-api](https://datosgobar.github.io/georef-ar-api/)
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' # Requiere conexion a internet. Se usa try() para que una caida o un
+#' # rate limit del servicio no haga fallar R CMD check (politica de CRAN
+#' # sobre paquetes que dependen de recursos de internet).
 #' consultas <- list(
 #'   list(nombre = "Neuquen"),
 #'   list(nombre = "Santa Fe", max = 1)
 #' )
-#' post_provincias(consultas)
+#' try(post_provincias(consultas))
 #'
-#' post_ubicacion(list(
+#' try(post_ubicacion(list(
 #'   list(lat = -34.6037, lon = -58.3816),
 #'   list(lat = -31.4201, lon = -64.1888)
-#' ))
+#' )))
 #' }
 #'
 #' @name post_endpoints

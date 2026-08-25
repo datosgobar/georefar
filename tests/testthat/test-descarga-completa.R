@@ -1,5 +1,8 @@
+# Estos tests pegan a la API publica de georef: se saltean en CRAN
+# (sin red garantizada / rate limiting) y cuando no hay internet.
 skip_if_offline <- function() {
-  skip_if_not(curl::has_internet(), "Sin acceso a internet")
+  testthat::skip_on_cran()
+  testthat::skip_if_not(curl::has_internet(), "Sin acceso a internet")
 }
 
 test_that("get_geodata_dump lanza error con entidad inválida", {

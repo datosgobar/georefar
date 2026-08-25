@@ -24,8 +24,11 @@
 #' @references [georef-ar-api/asentamientos](https://datosgobar.github.io/georef-ar-api/open-api/#/Recursos/get_asentamientos)
 #' @return Un Data Frame con el listado de Asentamientos.
 #' @examples
-#' \dontrun{
-#' get_asentamientos(provincia = "22", departamento = "007")
+#' \donttest{
+#' # Requiere conexion a internet. Se usa try() para que una caida o un
+#' # rate limit del servicio no haga fallar R CMD check (politica de CRAN
+#' # sobre paquetes que dependen de recursos de internet).
+#' try(get_asentamientos(provincia = "22", departamento = "007"))
 #' }
 get_asentamientos <- function(
     id = NULL,

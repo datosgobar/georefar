@@ -20,8 +20,11 @@
 #' @references [georef-ar-api/provincias](https://datosgobar.github.io/georef-ar-api/open-api/#/Recursos/get_provincias)
 #' @return Data Frame con listado de Provincias
 #' @examples
-#' \dontrun{
-#' get_provincias(nombre = "Neuquen")
+#' \donttest{
+#' # Requiere conexion a internet. Se usa try() para que una caida o un
+#' # rate limit del servicio no haga fallar R CMD check (politica de CRAN
+#' # sobre paquetes que dependen de recursos de internet).
+#' try(get_provincias(nombre = "Neuquen"))
 #' }
 get_provincias <- function(
     id = NULL,

@@ -19,8 +19,12 @@
 #' @references [georef-ar-api/aglomerados](https://datosgobar.github.io/georef-ar-api/open-api/#/Recursos/get_aglomerados)
 #' @return Un Data Frame con el listado de Aglomerados
 #' @examples
-#' \dontrun{
-#' get_aglomerados(nombre = "GRAN ROSARIO", provincia = "SANTA FE")
+#' \donttest{
+#' # Requiere conexion a internet. Se usa try() para que una caida o un
+#' # rate limit del servicio no haga fallar R CMD check (politica de CRAN
+#' # sobre paquetes que dependen de recursos de internet).
+#' # El endpoint /aglomerados no acepta filtro por provincia.
+#' try(get_aglomerados(nombre = "GRAN ROSARIO"))
 #' }
 get_aglomerados <- function(
     id = NULL,

@@ -1,3 +1,7 @@
+# Requiere paquetes de Suggests; si faltan, se saltea el archivo completo.
+testthat::skip_if_not_installed("mockery")
+testthat::skip_if_not_installed("withr")
+
 skip_if_not_installed("mockery")
 
 test_that("get_endpoint lanza error con parámetro NA", {

@@ -23,8 +23,11 @@
 #' @references [georef-ar-api/gobiernos-locales](https://datosgobar.github.io/georef-ar-api/open-api/#/Recursos/get_gobiernos-locales)
 #' @return Un Data Frame con el listado de Gobiernos Locales
 #' @examples
-#' \dontrun{
-#' get_gobiernos_locales(provincia = "cordoba", max = 10)
+#' \donttest{
+#' # Requiere conexion a internet. Se usa try() para que una caida o un
+#' # rate limit del servicio no haga fallar R CMD check (politica de CRAN
+#' # sobre paquetes que dependen de recursos de internet).
+#' try(get_gobiernos_locales(provincia = "cordoba", max = 10))
 #' }
 get_gobiernos_locales <- function(
     id = NULL,
