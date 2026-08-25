@@ -1,7 +1,7 @@
 #' Descargar Datos Geográficos Completos
 #'
 #' Permite descargar listados completos de entidades geográficas en diversos formatos.
-#' Accede al endpoint /{filename} de la georef-ar-api.
+#' Accede al endpoint \verb{/{filename}} de la georef-ar-api.
 #' Para aumentar la cuota de uso, se puede configurar un token JWT en la variable
 #' de entorno \code{GEOREFAR_TOKEN} (ver \url{https://datosgobar.github.io/georef-ar-api/jwt-token/}).
 #'
@@ -50,20 +50,20 @@ get_geodata_dump <- function(entidad, formato, path_to_save = NULL) {
 
   token <- Sys.getenv("GEOREFAR_TOKEN")
 
-  req <- request(url) |>
-    httr2::req_error(is_error = ~ resp_status(.x) != 200, body = httr2_error_handler)
+  req <- httr2::request(url) |>
+    httr2::req_error(is_error = ~ httr2::resp_status(.x) != 200, body = httr2_error_handler)
 
   if (!is.null(token) && token != "") {
     req <- req |> httr2::req_auth_bearer_token(token)
   }
 
-  response <- req_perform(req)
+  response <- httr2::req_perform(req)
 
   if (!is.null(path_to_save)) {
     assertthat::assert_that(is.character(path_to_save), length(path_to_save) == 1,
                             msg = "'path_to_save' debe ser una cad\u00e1na de texto con la ruta del archivo.")
     tryCatch({
-      writeBin(resp_body_raw(response), path_to_save)
+      writeBin(httr2::resp_body_raw(response), path_to_save)
       message(paste("Archivo guardado en:", path_to_save))
       return(invisible(path_to_save))
     }, error = function(e) {
@@ -71,7 +71,7 @@ get_geodata_dump <- function(entidad, formato, path_to_save = NULL) {
     })
   } else {
     # Si no se guarda, intentar parsear según el formato
-    content_text <- resp_body_string(response, encoding = "UTF-8")
+    content_text <- httr2::resp_body_string(response, encoding = "UTF-8")
     if (formato == "csv") {
       return(utils::read.csv(text = content_text, stringsAsFactors = FALSE))
     } else if (formato == "ndjson") {

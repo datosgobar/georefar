@@ -41,7 +41,8 @@ get_municipios <- function(
     get_endpoint(endpoint = "municipios", args = as.list(environment()))
 }
 
-#'@export
+#' @rdname post_endpoints
+#' @export
 post_municipios <- function(queries_list){
     bulk_post_request(endpoint = "municipios", queries_list = queries_list)
 }

@@ -1,10 +1,12 @@
 # Tests de integración POST (bulk) contra la API pública
 # La API pública tiene rate limiting, por eso se agrega Sys.sleep() entre tests.
 
+# Todos los tests de este archivo pegan a la API pública de georef.
+# Se saltean en CRAN (sin red / rate limits) y sin internet.
 skip_if_offline <- function() {
-  skip_if_not(curl::has_internet(), "Sin acceso a internet")
+  testthat::skip_on_cran()
+  testthat::skip_if_not(curl::has_internet(), "Sin acceso a internet")
 }
-
 # Wrapper que convierte 429 en skip en lugar de fallo
 # (la API pública tiene rate limiting agresivo cuando se corre el suite completo)
 skip_on_rate_limit <- function(expr) {

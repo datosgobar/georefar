@@ -37,7 +37,8 @@ get_provincias <- function(
     get_endpoint(endpoint = "provincias", args = as.list(environment()))
 }
 
-#'@export
+#' @rdname post_endpoints
+#' @export
 post_provincias <- function(queries_list){
   bulk_post_request(endpoint = "provincias", queries_list = queries_list)
 }

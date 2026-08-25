@@ -45,6 +45,7 @@ normalizar_direccion <- function(
   get_endpoint(endpoint = "direcciones", args = as.list(environment()))
 }
 
+#' @rdname post_endpoints
 #' @export
 post_normalizar_direccion <- function(queries_list){
   bulk_post_request(endpoint = "direcciones", queries_list = queries_list)

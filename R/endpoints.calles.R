@@ -43,6 +43,7 @@ get_calles <- function(
   get_endpoint(endpoint = "calles", args = as.list(environment()))
 }
 
+#' @rdname post_endpoints
 #' @export
 post_calles <- function(queries_list){
   bulk_post_request(endpoint = "calles", queries_list = queries_list)

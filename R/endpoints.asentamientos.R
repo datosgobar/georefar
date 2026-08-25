@@ -45,6 +45,7 @@ get_asentamientos <- function(
   get_endpoint(endpoint = "asentamientos", args = as.list(environment()))
 }
 
+#' @rdname post_endpoints
 #' @export
 post_asentamientos <- function(queries_list){
   bulk_post_request(endpoint = "asentamientos", queries_list = queries_list)

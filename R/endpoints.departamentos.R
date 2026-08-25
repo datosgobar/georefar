@@ -39,6 +39,7 @@ get_departamentos <- function(
     get_endpoint(endpoint = "departamentos", args = as.list(environment()))
 }
 
+#' @rdname post_endpoints
 #' @export
 post_departamentos <- function(queries_list){
     bulk_post_request(endpoint = "departamentos", queries_list = queries_list)

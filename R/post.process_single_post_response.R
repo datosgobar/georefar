@@ -27,7 +27,7 @@ process_single_post_response <- function(response_obj, endpoint, batch_size) {
       })
       result <- dplyr::bind_rows(all_rows)
     } else if (any(startsWith(names(results_df), paste0(col_name, ".")))) {
-      # Caso aplanado total (ej: ubicacion): las columnas ya están en results_df con prefijo
+      # Caso aplanado total (ej: ubicacion): las columnas ya estan en results_df con prefijo
       result <- dplyr::as_tibble(results_df)
     } else {
       warning(paste0("Campo '", col_name, "' no encontrado en 'resultados' para '", endpoint, "'."), call. = FALSE)
@@ -55,7 +55,7 @@ process_single_post_response <- function(response_obj, endpoint, batch_size) {
 
   if (nrow(result) == 0 && batch_size > 0) {
     warning(paste0("Una tanda de ", batch_size, " consultas POST para '", endpoint,
-                   "' devolvió una lista vacía o no se pudieron procesar sus resultados."), call. = FALSE)
+                   "' devolvi\u00f3 una lista vac\u00eda o no se pudieron procesar sus resultados."), call. = FALSE)
   }
 
   return(result)

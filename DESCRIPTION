@@ -1,20 +1,33 @@
 Package: georefar
-Title: Wrapper de la API Georef
-Version: 1.0.0
-Authors@R: 
-    person("Alén", "Carbajal", , "acarbajal@sicyt.gob.ar", role = c("aut", "cre"))
-Description: Wrapper basado en georefar de Patricio Del Boca y su reversión integrada en GeoAr.
+Title: Wrapper for the Argentine 'Georef' Geocoding API
+Version: 0.1.0
+Authors@R: c(
+    person("Julián", "Echandi", , "jechandi.gobar@gmail.com", role = c("aut", "cre")),
+    person("Alén", "Carbajal", , "acarbajal@sicyt.gob.ar", role = "aut")
+  )
+Description: Query the Argentine national geographic normalization service
+    'georef' <https://apis.datos.gob.ar/georef> from R, searching provinces,
+    departments, municipalities, localities, settlements, census units,
+    streets and educational institutions, normalizing addresses and
+    performing reverse geocoding. Results are returned as data frames, and
+    batch queries can be sent in a single request.
 License: GPL-3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
+Depends: 
+    R (>= 4.1.0)
 Imports:
+    assertthat,
     curl,
     dplyr,
     httr2,
     jsonlite,
     purrr
 Suggests:
+    attempt,
+    mockery,
     testthat (>= 3.0.0),
     withr
 Config/testthat/edition: 3
 Config/roxygen2/version: 8.0.0
+RoxygenNote: 7.3.3

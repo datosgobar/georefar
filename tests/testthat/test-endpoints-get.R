@@ -1,10 +1,12 @@
 # Tests de integración real contra la API pública
 # Se saltan si no hay internet disponible
 
+# Todos los tests de este archivo pegan a la API pública de georef.
+# Se saltean en CRAN (sin red / rate limits) y sin internet.
 skip_if_offline <- function() {
-  skip_if_not(curl::has_internet(), "Sin acceso a internet")
+  testthat::skip_on_cran()
+  testthat::skip_if_not(curl::has_internet(), "Sin acceso a internet")
 }
-
 # ── provincias ────────────────────────────────────────────────────────────────
 
 test_that("get_provincias devuelve 24 provincias", {

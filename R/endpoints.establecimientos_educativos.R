@@ -41,7 +41,8 @@ get_establecimientos_educativos <- function(
     get_endpoint(endpoint = "establecimientos-educativos", args = as.list(environment()))
 }
 
-#'@export
+#' @rdname post_endpoints
+#' @export
 post_establecimientos_educativos <- function(queries_list){
   bulk_post_request(endpoint = "establecimientos-educativos", queries_list = queries_list)
 }

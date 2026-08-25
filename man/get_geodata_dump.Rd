@@ -31,7 +31,7 @@ Dependiendo de 'path_to_save' y 'formato':
 }
 \description{
 Permite descargar listados completos de entidades geográficas en diversos formatos.
-Accede al endpoint /{filename} de la georef-ar-api.
+Accede al endpoint \verb{/{filename}} de la georef-ar-api.
 Para aumentar la cuota de uso, se puede configurar un token JWT en la variable
 de entorno \code{GEOREFAR_TOKEN} (ver \url{https://datosgobar.github.io/georef-ar-api/jwt-token/}).
 }

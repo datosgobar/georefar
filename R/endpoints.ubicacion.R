@@ -23,6 +23,7 @@ get_ubicacion <- function(lat, lon, division = NULL, aplanar = TRUE, campos = NU
   get_endpoint(endpoint = "ubicacion", args = as.list(environment()))
 }
 
+#' @rdname post_endpoints
 #' @export
 post_ubicacion <- function(queries_list){
   bulk_post_request(endpoint = "ubicacion", queries_list = queries_list)
