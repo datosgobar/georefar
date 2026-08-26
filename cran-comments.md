@@ -2,7 +2,22 @@
 
 0 errors | 0 warnings | 1 note
 
-* This is a new release.
+The note on both win-builder platforms is the standard new-submission note:
+
+    * checking CRAN incoming feasibility ... NOTE
+    Maintainer: 'Julián Echandi <jechandi.gobar@gmail.com>'
+
+    New submission
+
+    Possibly misspelled words in DESCRIPTION:
+      Geocoding (2:43)
+      geocoding (12:24)
+
+This is a new release, so the "New submission" note is expected. "Geocoding"
+is spelled correctly — it is the standard English term for the operation this
+package performs.
+
+The macOS builder check returned Status: OK, with no errors, warnings or notes.
 
 The two remaining notes on our local machine are artefacts of the local
 setup and are not expected on the CRAN check machines:
@@ -13,9 +28,14 @@ setup and are not expected on the CRAN check machines:
 
 ## Test environments
 
-* Local: Windows 11, R 4.4.2
-* win-builder: R-devel and R-release        <-- PENDIENTE: correr antes de enviar
-* macOS builder: R-release                  <-- PENDIENTE: correr antes de enviar
+* Local: Windows 11, R 4.4.2 — 0 errors | 0 warnings | 2 notes (local artefacts,
+  see above)
+* win-builder, R-devel (R Under development, 2026-08-24 r90445 ucrt,
+  x86_64-w64-mingw32, Windows Server 2022) — 0 errors | 0 warnings | 1 note
+* win-builder, R-release (R 4.6.1, x86_64-w64-mingw32, Windows Server 2022)
+  — 0 errors | 0 warnings | 1 note
+* macOS builder (R 4.6.1 Patched, aarch64-apple-darwin23, macOS 26.6) —
+  Status: OK (0 errors | 0 warnings | 0 notes)
 
 ## Notes
 
